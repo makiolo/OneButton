@@ -19,9 +19,8 @@ OneButton::OneButton(int pin, int activeLow)
   _debounceTicks = 50;      // number of millisec that have to pass by before a click is assumed as safe.
   _clickTicks = 600;        // number of millisec that have to pass by before a click is detected.
   _pressTicks = 1000;       // number of millisec that have to pass by before a long button press is detected.
- 
-  _state = 0; // starting with state 0: waiting for button to be pressed
-  _isLongPressed = false;  // Keep track of long press state
+
+  reset();
 
   if (activeLow) {
     // the button connects the input pin to GND when pressed.
@@ -60,6 +59,13 @@ void OneButton::setClickTicks(int ticks) {
   _clickTicks = ticks;
 } // setClickTicks
 
+void OneButton::reset()
+{
+  _state = 0; // starting with state 0: waiting for button to be pressed
+  _isLongPressed = false;  // Keep track of long press state
+  _startTime = millis();
+  _stopTime = millis();
+}
 
 // explicitly set the number of millisec that have to pass by before a long button press is detected.
 void OneButton::setPressTicks(int ticks) {
