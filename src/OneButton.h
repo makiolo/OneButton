@@ -31,6 +31,8 @@ public:
   // ----- Constructor -----
   OneButton(int pin, int active);
   
+  void reset();
+  
   // ----- Set runtime parameters -----
 
   // set # millisec after safe click is assumed.
